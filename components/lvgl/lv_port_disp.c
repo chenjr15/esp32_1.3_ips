@@ -105,6 +105,9 @@ void lv_port_disp_init(void)
 
     /*Used to copy the buffer's content to the display*/
     disp_drv.flush_cb = disp_flush;
+    disp_drv.rotated=LV_DISP_ROT_180;
+    // 要旋转屏幕的话要同时开这个软件旋转开关
+    disp_drv.sw_rotate=1;
 
     /*Set a display buffer*/
     disp_drv.draw_buf = &draw_buf_dsc_1;
