@@ -16,11 +16,11 @@ static const spi_bus_config_t buscfg={   //spi定义
 };
 
 static const spi_device_interface_config_t devcfg = {
-    .clock_speed_hz = SPI_MASTER_FREQ_40M,
-    .mode = 2,
-    .spics_io_num = PIN_NUM_CS,
-    .queue_size = 7
-    };
+  .clock_speed_hz = SPI_MASTER_FREQ_20M * 3,
+  .mode           = 2,
+  .spics_io_num   = PIN_NUM_CS,
+  .queue_size     = 7
+};
 
 void vspi_init(void)
 {
