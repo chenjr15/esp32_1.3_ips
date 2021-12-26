@@ -10,7 +10,6 @@
  *      INCLUDES
  *********************/
 #include "lv_port_disp.h"
-#include "../../lvgl.h"
 
 /*********************
  *      DEFINES
@@ -94,7 +93,8 @@ void lv_port_disp_init(void)
      * Register the display in LVGL
      *----------------------------------*/
 
-    static lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
+    static lv_disp_drv_t disp_drv;
+                             /*Descriptor of a display driver*/
     lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
 
     /*Set up the functions to access to your display*/
