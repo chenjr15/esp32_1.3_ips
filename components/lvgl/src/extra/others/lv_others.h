@@ -14,7 +14,6 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "snapshot/lv_snapshot.h"
-#include "monkey/lv_monkey.h"
 
 /*********************
  *      DEFINES

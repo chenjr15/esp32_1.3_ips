@@ -1,5 +1,5 @@
 /**
- * @file lv_btnmatrix.h
+ * @file lv_btnm.h
  *
  */
 
@@ -78,7 +78,7 @@ typedef enum {
  **********************/
 
 /**
- * Create a button matrix object
+ * Create a button matrix objects
  * @param parent    pointer to an object, it will be the parent of the new button matrix
  * @return          pointer to the created button matrix
  */

@@ -28,4 +28,3 @@ Here some ideas as inspiration feel free to contribute with ideas too.
 ## Contributors
 - lv_animimg: @ZhaoQiang-b45475
 - lv_span: @guoweilkd 
-- lv_menu: @HX2003

@@ -6,7 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_draw.h"
+#include "lv_draw_mask.h"
 #if LV_DRAW_COMPLEX
 #include "../misc/lv_math.h"
 #include "../misc/lv_log.h"
@@ -140,16 +140,16 @@ LV_ATTRIBUTE_FAST_MEM lv_draw_mask_res_t lv_draw_mask_apply(lv_opa_t * mask_buf,
  * - `LV_DRAW_MASK_RES_CHANGED`: `mask_buf` has changed, it shows the desired opacity of each pixel in the given line
  */
 LV_ATTRIBUTE_FAST_MEM lv_draw_mask_res_t lv_draw_mask_apply_ids(lv_opa_t * mask_buf, lv_coord_t abs_x, lv_coord_t abs_y,
-                                                                lv_coord_t len, const int16_t * ids, int16_t ids_count)
+                                                                lv_coord_t len, const int16_t *ids, int16_t ids_count)
 {
     bool changed = false;
     _lv_draw_mask_common_dsc_t * dsc;
 
-    for(int i = 0; i < ids_count; i++) {
+    for (int i = 0; i < ids_count; i++) {
         int16_t id = ids[i];
-        if(id == LV_MASK_ID_INV) continue;
+        if (id == LV_MASK_ID_INV) continue;
         dsc = LV_GC_ROOT(_lv_draw_mask_list[id]).param;
-        if(!dsc) continue;
+        if (!dsc) continue;
         lv_draw_mask_res_t res = LV_DRAW_MASK_RES_FULL_COVER;
         res = dsc->cb(mask_buf, abs_x, abs_y, len, dsc);
         if(res == LV_DRAW_MASK_RES_TRANSP) return LV_DRAW_MASK_RES_TRANSP;
@@ -462,7 +462,7 @@ void lv_draw_mask_angle_init(lv_draw_mask_angle_param_t * param, lv_coord_t vert
 
 /**
  * Initialize a fade mask.
- * @param param pointer to an `lv_draw_mask_radius_param_t` to initialize
+ * @param param param pointer to a `lv_draw_mask_param_t` to initialize
  * @param rect coordinates of the rectangle to affect (absolute coordinates)
  * @param radius radius of the rectangle
  * @param inv true: keep the pixels inside the rectangle; keep the pixels outside of the rectangle
@@ -471,9 +471,9 @@ void lv_draw_mask_radius_init(lv_draw_mask_radius_param_t * param, const lv_area
 {
     lv_coord_t w = lv_area_get_width(rect);
     lv_coord_t h = lv_area_get_height(rect);
+    if(radius < 0) radius = 0;
     int32_t short_side = LV_MIN(w, h);
     if(radius > short_side >> 1) radius = short_side >> 1;
-    if(radius < 0) radius = 0;
 
     lv_area_copy(&param->cfg.rect, rect);
     param->cfg.radius = radius;

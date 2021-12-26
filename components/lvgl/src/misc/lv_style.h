@@ -14,7 +14,6 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include <stdbool.h>
-#include <stdint.h>
 #include "../font/lv_font.h"
 #include "lv_color.h"
 #include "lv_area.h"
@@ -63,7 +62,6 @@ enum {
     LV_BLEND_MODE_ADDITIVE,   /**< Add the respective color channels*/
     LV_BLEND_MODE_SUBTRACTIVE,/**< Subtract the foreground from the background*/
     LV_BLEND_MODE_MULTIPLY,   /**< Multiply the foreground and background*/
-    LV_BLEND_MODE_REPLACE,    /**< Replace background with foreground in the area*/
 };
 
 typedef uint8_t lv_blend_mode_t;
@@ -340,7 +338,7 @@ void lv_style_set_prop(lv_style_t * style, lv_style_prop_t prop, lv_style_value_
  *         LV_RES_OK: the property was fond, and `value` is set accordingly
  * @note For performance reasons there are no sanity check on `style`
  */
-lv_res_t lv_style_get_prop(const lv_style_t * style, lv_style_prop_t prop, lv_style_value_t * value);
+lv_res_t lv_style_get_prop(lv_style_t * style, lv_style_prop_t prop, lv_style_value_t * value);
 
 
 /**
@@ -353,8 +351,7 @@ lv_res_t lv_style_get_prop(const lv_style_t * style, lv_style_prop_t prop, lv_st
  * @note For performance reasons there are no sanity check on `style`
  * @note This function is the same as ::lv_style_get_prop but inlined. Use it only on performance critical places
  */
-static inline lv_res_t lv_style_get_prop_inlined(const lv_style_t * style, lv_style_prop_t prop,
-                                                 lv_style_value_t * value)
+static inline lv_res_t lv_style_get_prop_inlined(lv_style_t * style, lv_style_prop_t prop, lv_style_value_t * value)
 {
     if(style->is_const) {
         const lv_style_const_prop_t * const_prop;
@@ -414,7 +411,7 @@ lv_style_value_t lv_style_prop_get_default(lv_style_prop_t prop);
 /**
  * Checks if a style is empty (has no properties)
  * @param style pointer to a style
- * @return true if the style is empty
+ * @return
  */
 bool lv_style_is_empty(const lv_style_t * style);
 
@@ -427,12 +424,6 @@ bool lv_style_is_empty(const lv_style_t * style);
 uint8_t _lv_style_get_prop_group(lv_style_prop_t prop);
 
 #include "lv_style_gen.h"
-
-static inline void lv_style_set_size(lv_style_t * style, lv_coord_t value)
-{
-    lv_style_set_width(style, value);
-    lv_style_set_height(style, value);
-}
 
 static inline void lv_style_set_pad_all(lv_style_t * style, lv_coord_t value)
 {
@@ -460,6 +451,12 @@ static inline void lv_style_set_pad_gap(lv_style_t * style, lv_coord_t value)
     lv_style_set_pad_column(style, value);
 }
 
+static inline void lv_style_set_size(lv_style_t * style, lv_coord_t value)
+{
+    lv_style_set_width(style, value);
+    lv_style_set_height(style, value);
+}
+
 
 /*************************
  *    GLOBAL VARIABLES
@@ -470,13 +467,10 @@ static inline void lv_style_set_pad_gap(lv_style_t * style, lv_coord_t value)
  **********************/
 
 #if LV_USE_ASSERT_STYLE
-#  define LV_ASSERT_STYLE(style_p)                                                                            \
-    do {                                                                                                      \
-        LV_ASSERT_MSG(style_p != NULL, "The style is NULL");                                                  \
-        LV_ASSERT_MSG(style_p->sentinel == LV_STYLE_SENTINEL_VALUE, "Style is not initialized or corrupted"); \
-    } while(0)
+#  define LV_ASSERT_STYLE(style_p)    LV_ASSERT_MSG(style_p != NULL, "The style is NULL");          \
+    LV_ASSERT_MSG(style_p->sentinel == LV_STYLE_SENTINEL_VALUE, "Style is not initialized or corrupted");
 #else
-#  define LV_ASSERT_STYLE(p) do{}while(0)
+# define LV_ASSERT_STYLE(p)
 #endif
 
 #ifdef __cplusplus

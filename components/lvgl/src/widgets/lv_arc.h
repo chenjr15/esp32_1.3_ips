@@ -70,7 +70,7 @@ typedef enum {
 
 /**
  * Create an arc object
- * @param parent pointer to an object, it will be the parent of the new arc
+ * @param par pointer to an object, it will be the parent of the new arc
  * @return pointer to the created arc
  */
 lv_obj_t * lv_arc_create(lv_obj_t * parent);
