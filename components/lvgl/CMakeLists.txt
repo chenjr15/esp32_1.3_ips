@@ -49,4 +49,4 @@ idf_component_register(	SRC_DIRS "src/core"
 						# INCLUDE_DIRS "GUI_APP"
                        INCLUDE_DIRS "./"
                        INCLUDE_DIRS "lvgl_port"
-                       PRIV_REQUIRES driver user_dev user_mid) 
+                       PRIV_REQUIRES driver st7789) 

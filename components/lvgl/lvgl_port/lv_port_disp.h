@@ -3,7 +3,8 @@
  *
  */
 
- /*Copy this file as "lv_port_disp.h" and set this value to "1" to enable content*/
+/*Copy this file as "lv_port_disp.h" and set this value to "1" to enable
+ * content*/
 #if 1
 
 #ifndef LV_PORT_DISP_TEMPL_H
@@ -18,14 +19,14 @@ extern "C" {
  *********************/
 #include "lvgl.h"
 // 引入lcd中间件
-#include "User_mid_LCD.h"
+#include "st7789.h"
 
 /*********************
  *      DEFINES
  *********************/
 
-#define MY_DISP_HOR_RES 240
-#define MY_DISP_VER_RES 240
+#define MY_DISP_HOR_RES LCD_W
+#define MY_DISP_VER_RES LCD_H
 
 /**********************
  *      TYPEDEFS
