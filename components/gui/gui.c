@@ -3,6 +3,7 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 
+#include "wifi_connect.h"
 static const char *TAG = "GUI";
 
 static esp_timer_handle_t lvgl_timer_handle = NULL;
@@ -33,6 +34,8 @@ static void btn_event_cb(lv_event_t *e) {
     lv_label_set_text_fmt(label, "%03d", cnt);
   }
 }
+
+static lv_obj_t *label_wifi;
 void gui_init(void) {
 
   // lvgl内核初始化
@@ -77,7 +80,14 @@ void gui_init(void) {
   lv_obj_t *sw;
   sw = lv_switch_create(lv_scr_act());
   lv_obj_add_state(sw, LV_STATE_CHECKED);
+
+  label_wifi = lv_label_create(lv_scr_act());
+
   // 加入控制组
   lv_group_add_obj(input_group, btn);
   lv_group_add_obj(input_group, sw);
+}
+
+void setWifiStatus(const char *status) {
+  lv_label_set_text(label_wifi, status);
 }
