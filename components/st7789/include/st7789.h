@@ -11,21 +11,21 @@
 #define LCD_HOST VSPI_HOST
 #define DMA_CHAN 2
 
-#define PIN_NUM_MISO -1
-#define PIN_NUM_MOSI 23
-#define PIN_NUM_CLK  18
-#define PIN_NUM_CS   -1
+#define PIN_NUM_MISO CONFIG_ST7789_SPI_PIN_MISO
+#define PIN_NUM_MOSI CONFIG_ST7789_SPI_PIN_MOSI
+#define PIN_NUM_CLK  CONFIG_ST7789_SPI_PIN_CLK
+#define PIN_NUM_CS   CONFIG_ST7789_SPI_PIN_CS
 
 // LCD SPI 通信频率
 #define LCD_SPI_FREQ (SPI_MASTER_FREQ_20M * 3)
 
 // LCD 宽高定义
-#define LCD_W 240
-#define LCD_H 240
+#define LCD_W CONFIG_ST7789_LCD_WIDTH
+#define LCD_H CONFIG_ST7789_LCD_HIGHT
 // LCD 控制引脚
-#define LCD_RES GPIO_NUM_33
-#define LCD_DC  GPIO_NUM_27
-#define LCD_BLK GPIO_NUM_32
+#define LCD_RES CONFIG_ST7789_LCD_RES
+#define LCD_DC  CONFIG_ST7789_LCD_DC
+#define LCD_BLK CONFIG_ST7789_LCD_BLK
 
 #define BLK_ON()  gpio_set_level(LCD_BLK, 1);
 #define BLK_OFF() gpio_set_level(LCD_BLK, 0);

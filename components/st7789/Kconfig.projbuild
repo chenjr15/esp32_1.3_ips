@@ -1,0 +1,66 @@
+menu "ST7789"
+
+    config ST7789_LCD_WIDTH
+        int  "LCD Width"
+        default 240
+        help
+            LCD width in pixel.
+
+    config ST7789_LCD_HIGHT
+        int  "LCD Height"
+        default 240
+        help
+            LCD height in pixel.
+
+    config ST7789_SPI_PIN_MISO
+        int  "SPI MISO pin num"
+        default -1
+        help
+            -1 for unset
+
+    config ST7789_SPI_PIN_MOSI
+        int  "SPI MOSI pin num"
+        default 23
+        help
+            -1 for unset
+
+    config ST7789_SPI_PIN_CLK
+        int  "SPI Clock pin num"
+        default 18
+        help
+            -1 for unset
+
+    config ST7789_SPI_PIN_CS
+        int  "SPI CS pin num"
+        default -1
+        help
+            -1 for unset
+
+    config ST7789_LCD_RES
+        int  "LCD Reset pin num"
+        default 33
+        help
+            low level for reset 
+
+    config ST7789_LCD_DC
+        int  "LCD Data/Cmd select pin num"
+        default 27
+        help
+            low: register, high: data  
+
+    config ST7789_LCD_BLK
+        int  "LCD Back light pin num"
+        default 32
+        help
+            low: off, high: on  
+
+
+
+    
+
+    config ESP_MAXIMUM_RETRY
+        int "Maximum retry"
+        default 5
+        help
+            Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+endmenu
