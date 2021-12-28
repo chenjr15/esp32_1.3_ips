@@ -1,2 +1,5 @@
 build/
 .vscode/
+.vscode/settings.json
+sdkconfig
+sdkconfig.old
