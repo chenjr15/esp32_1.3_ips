@@ -14,6 +14,7 @@
 #include "gui.h"
 #include "lvgl.h"
 #include "st7789.h"
+#include "wifi_connect.h"
 
 static const char *TAG = "main";
 
@@ -25,6 +26,7 @@ void lvgl_task(void *arg) {
 }
 
 void app_main(void) {
+  wifi_init_sta();
   gui_init();
   while (true) {
     vTaskDelay(((10) / portTICK_PERIOD_MS));
